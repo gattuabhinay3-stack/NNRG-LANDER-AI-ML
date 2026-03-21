@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NNRG Tech Fest 2027 — AI & ML Department</title>
+<meta name="description" content="NNRG Tech Fest 2027 — Organized by AI & ML Department. 6 exciting events. Register now!"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#A48111;
+  --gold2:#D4AF37;
+  --gold3:#F5E27A;
+  --dark:#060500;
+  --dark2:#0a0800;
+  --dark3:#0d0a00;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:#060500}
+::-webkit-scrollbar-thumb{background:linear-gradient(#A48111,#D4AF37);border-radius:2px}
+
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(164,129,17,0.3)}50%{box-shadow:0 0 40px rgba(164,129,17,0.6)}}
+
+/* NAV — ONLY LOGO + REGISTER */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:18px 48px;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:all 0.4s;
+}
+nav.scrolled{
+  background:rgba(6,5,0,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(164,129,17,0.15);
+  padding:12px 48px;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+}
+.nav-logo-icon{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,#A48111,#D4AF37);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:900;color:#000;
+}
+.nav-logo-text{
+  font-family:'Syne',sans-serif;font-weight:900;font-size:19px;
+  background:linear-gradient(135deg,#A48111,#D4AF37,#F5E27A,#D4AF37,#A48111);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s linear infinite;
+  letter-spacing:-0.5px;
+}
+.nav-register{
+  background:linear-gradient(135deg,#A48111,#D4AF37);
+  color:#000;font-size:13px;font-weight:800;
+  padding:10px 24px;border-radius:999px;
+  text-decoration:none;letter-spacing:0.5px;
+  transition:all 0.3s;
+  box-shadow:0 4px 20px rgba(164,129,17,0.35);
+}
+.nav-register:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(164,129,17,0.5);
+  animation:glow 1s ease-in-out infinite;
+}
+
+/* HERO */
+.hero{
+  position:relative;height:100vh;
+  display:flex;align-items:flex-end;
+  overflow:hidden;background:var(--dark);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('hero-bg.png');
+  background-size:cover;background-position:center;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(6,5,0,0.25) 0%,
+    rgba(6,5,0,0.55) 40%,
+    rgba(6,5,0,0.97) 100%);
+}
+.hero-glow1{
+  position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(164,129,17,0.12) 0%,transparent 70%);
+  top:-100px;left:-100px;pointer-events:none;
+}
+.hero-glow2{
+  position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,175,55,0.08) 0%,transparent 70%);
+  bottom:100px;right:-80px;pointer-events:none;
+}
+/* Floating code snippets */
+.fc{
+  position:absolute;font-family:'JetBrains Mono',monospace;
+  pointer-events:none;user-select:none;
+  animation:float ease-in-out infinite;
+}
+.fc1{top:15%;left:4%;font-size:13px;color:rgba(164,129,17,0.12);animation-duration:7s}
+.fc2{top:18%;right:5%;font-size:12px;color:rgba(212,175,55,0.09);animation-duration:9s;animation-delay:1s}
+.fc3{top:42%;left:2%;font-size:11px;color:rgba(164,129,17,0.1);animation-duration:6s;animation-delay:2s}
+.fc4{bottom:28%;right:5%;font-size:11px;color:rgba(212,175,55,0.08);animation-duration:8s;animation-delay:0.5s}
+.fc5{top:60%;left:4%;font-size:11px;color:rgba(164,129,17,0.08);animation-duration:7s;animation-delay:3s}
+
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 64px 80px;
+  max-width:760px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(164,129,17,0.07);
+  border:1px solid rgba(164,129,17,0.22);
+  border-radius:999px;padding:6px 16px;
+  margin-bottom:22px;
+  animation:fadeUp 0.8s ease 0.1s both;
+}
+.hero-eyebrow-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,#A48111,#D4AF37);
+  animation:pulse 2s infinite;
+}
+.hero-eyebrow-text{
+  font-size:10px;font-weight:700;letter-spacing:2.5px;
+  color:rgba(164,129,17,0.65);
+  font-family:'JetBrains Mono',monospace;
+}
+.hero-title{
+  font-family:'Syne',sans-serif;font-weight:900;
+  letter-spacing:-3px;line-height:0.88;
+  margin-bottom:14px;
+  animation:fadeUp 0.8s ease 0.2s both;
+}
+.hero-title .line1{font-size:clamp(60px,9vw,112px);color:#fff}
+.hero-title .line2{
+  font-size:clamp(60px,9vw,112px);
+  background:linear-gradient(135deg,#A48111 0%,#D4AF37 30%,#F5E27A 55%,#D4AF37 75%,#A48111 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 5s linear infinite;
+}
+.hero-divider{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:16px;
+  animation:fadeUp 0.8s ease 0.3s both;
+}
+.hero-divider-line{height:1px;width:60px;background:linear-gradient(to right,transparent,rgba(164,129,17,0.4))}
+.hero-divider-dot{width:4px;height:4px;border-radius:50%;background:#A48111}
+.hero-divider-text{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;color:rgba(164,129,17,0.35);letter-spacing:5px;
+}
+.hero-sub{
+  font-size:17px;color:rgba(255,255,255,0.45);
+  max-width:540px;line-height:1.8;
+  margin-bottom:10px;
+  animation:fadeUp 0.8s ease 0.35s both;
+}
+.hero-dept{
+  font-size:11px;font-weight:700;letter-spacing:2.5px;
+  color:rgba(164,129,17,0.55);
+  margin-bottom:36px;
+  animation:fadeUp 0.8s ease 0.4s both;
+}
+.hero-btns{
+  display:flex;gap:14px;
+  animation:fadeUp 0.8s ease 0.5s both;
+}
+.hero-btn-main{
+  background:linear-gradient(135deg,#A48111,#D4AF37,#A48111);
+  background-size:200% auto;
+  color:#000;padding:15px 34px;border-radius:999px;
+  font-size:14px;font-weight:800;text-decoration:none;
+  letter-spacing:0.5px;
+  box-shadow:0 8px 32px rgba(164,129,17,0.35);
+  transition:all 0.3s;
+  animation:shimmer 4s linear infinite;
+}
+.hero-btn-main:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 48px rgba(164,129,17,0.5);
+}
+.hero-btn-sec{
+  background:rgba(164,129,17,0.07);
+  color:rgba(164,129,17,0.65);
+  padding:15px 34px;border-radius:999px;
+  font-size:14px;font-weight:600;text-decoration:none;
+  border:1px solid rgba(164,129,17,0.22);
+  transition:all 0.3s;
+}
+.hero-btn-sec:hover{
+  background:rgba(164,129,17,0.12);
+  transform:translateY(-3px);
+}
+.hero-right-card{
+  position:absolute;bottom:64px;right:64px;z-index:2;
+  background:rgba(6,5,0,0.75);backdrop-filter:blur(16px);
+  border:1px solid rgba(164,129,17,0.2);
+  border-radius:16px;padding:16px 22px;
+  animation:fadeUp 0.8s ease 0.6s both;
+}
+.hero-right-card .label{
+  font-size:10px;color:rgba(164,129,17,0.45);
+  font-family:'JetBrains Mono',monospace;letter-spacing:1px;
+  margin-bottom:3px;
+}
+.hero-right-card .value{
+  font-family:'Syne',sans-serif;font-size:15px;
+  font-weight:800;color:#fff;
+}
+
+/* TICKER */
+.ticker{
+  background:#040300;
+  padding:12px 0;border-top:1px solid rgba(164,129,17,0.1);
+  border-bottom:1px solid rgba(164,129,17,0.1);
+  overflow:hidden;position:relative;
+}
+.ticker::before,.ticker::after{
+  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;
+}
+.ticker::before{left:0;background:linear-gradient(90deg,#040300,transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,#040300,transparent)}
+.ticker-inner{
+  display:flex;animation:ticker 24s linear infinite;width:max-content;
+}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:0 22px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  color:rgba(164,129,17,0.3);
+}
+.ticker-dot{width:4px;height:4px;border-radius:50%}
+
+/* SECTIONS */
+section{padding:96px 64px}
+
+/* SECTION HEADER */
+.sec-eyebrow{
+  display:flex;align-items:center;gap:12px;margin-bottom:12px;
+}
+.sec-eyebrow-line{height:1px;width:36px;background:linear-gradient(to right,transparent,rgba(164,129,17,0.6))}
+.sec-eyebrow-text{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  color:rgba(164,129,17,0.5);text-transform:uppercase;
+}
+.sec-title{
+  font-family:'Syne',sans-serif;font-size:clamp(32px,5vw,60px);
+  font-weight:900;color:#fff;letter-spacing:-1.5px;line-height:1;
+  margin-bottom:4px;
+}
+.sec-muted{
+  font-family:'Syne',sans-serif;font-size:clamp(28px,4.5vw,54px);
+  font-weight:900;color:rgba(255,255,255,0.06);letter-spacing:-1.5px;
+  line-height:1;margin-bottom:48px;
+}
+
+/* COMMITTEE */
+.committee{background:linear-gradient(180deg,var(--dark),var(--dark2))}
+
+/* Leadership grid */
+.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.lead-card{
+  border-radius:20px;padding:28px;
+  transition:all 0.3s;
+}
+.lead-card:hover{transform:translateY(-4px)}
+.lc-gold{
+  background:rgba(164,129,17,0.04);
+  border:1px solid rgba(164,129,17,0.18);
+}
+.lc-silver{
+  background:rgba(212,175,55,0.03);
+  border:1px solid rgba(212,175,55,0.14);
+}
+.lead-card-title{
+  font-family:'Syne',sans-serif;font-size:18px;font-weight:800;
+  margin-bottom:18px;letter-spacing:-0.5px;
+}
+.lc-gold .lead-card-title{
+  background:linear-gradient(135deg,#A48111,#D4AF37,#F5E27A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.lc-silver .lead-card-title{
+  background:linear-gradient(135deg,#D4AF37,#F5E27A,#D4AF37);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.lead-person{
+  display:flex;gap:10px;padding:10px 0;
+  border-bottom:1px solid rgba(164,129,17,0.06);
+}
+.lead-person:last-child{border:none}
+.lead-bar-gold{width:2px;border-radius:1px;flex-shrink:0;background:linear-gradient(#A48111,#D4AF37)}
+.lead-bar-silver{width:2px;border-radius:1px;flex-shrink:0;background:linear-gradient(#D4AF37,#F5E27A)}
+.lead-role{
+  font-size:9px;font-weight:700;letter-spacing:1.5px;
+  color:rgba(164,129,17,0.35);text-transform:uppercase;margin-bottom:3px;
+}
+.lead-name{font-size:14px;font-weight:700;color:#fff}
+.lead-sub{font-size:11px;color:rgba(255,255,255,0.3);font-style:italic;margin-top:2px}
+
+/* DEPT CARD */
+.dept-card{
+  background:rgba(164,129,17,0.03);
+  border:1px solid rgba(164,129,17,0.14);
+  border-radius:20px;padding:28px;margin-bottom:16px;
+}
+.dept-title{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:800;
+  background:linear-gradient(135deg,#A48111,#D4AF37,#F5E27A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:20px;letter-spacing:-0.5px;
+}
+.dept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dept-person{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(164,129,17,0.1);
+  border-radius:14px;padding:14px;
+  transition:all 0.2s;
+}
+.dept-person:hover{border-color:rgba(164,129,17,0.25);transform:translateY(-2px)}
+.dept-person.main{
+  background:rgba(164,129,17,0.06);
+  border-color:rgba(164,129,17,0.22);
+}
+.dp-label{
+  font-size:9px;font-weight:700;letter-spacing:2px;
+  color:rgba(164,129,17,0.35);text-transform:uppercase;margin-bottom:5px;
+}
+.dp-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px}
+.dp-detail{font-size:11px;color:rgba(255,255,255,0.35)}
+.dp-phone{font-size:12px;font-weight:700;color:#A48111;margin-top:3px}
+
+/* EVENT COMMITTEE CARDS */
+.ec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ec{
+  border-radius:20px;padding:22px;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.ec:hover{transform:translateY(-5px)}
+.ec::before{
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,rgba(164,129,17,0.04),transparent);
+  pointer-events:none;
+}
+.ec1{background:rgba(164,129,17,0.04);border:1px solid rgba(164,129,17,0.18)}
+.ec2{background:rgba(212,175,55,0.03);border:1px solid rgba(212,175,55,0.15)}
+.ec3{background:rgba(164,129,17,0.03);border:1px solid rgba(164,129,17,0.14)}
+.ec4{background:rgba(245,226,122,0.03);border:1px solid rgba(245,226,122,0.12)}
+.ec5{background:rgba(164,129,17,0.03);border:1px solid rgba(164,129,17,0.13)}
+.ec6{background:rgba(212,175,55,0.03);border:1px solid rgba(212,175,55,0.13)}
+.ec-header{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:16px;padding-bottom:12px;
+  border-bottom:1px solid rgba(164,129,17,0.08);
+}
+.ec-dot{width:10px;height:10px;border-radius:50%}
+.ec1 .ec-dot,.ec3 .ec-dot,.ec5 .ec-dot{background:linear-gradient(135deg,#A48111,#D4AF37)}
+.ec2 .ec-dot,.ec4 .ec-dot,.ec6 .ec-dot{background:linear-gradient(135deg,#D4AF37,#F5E27A)}
+.ec-name{
+  font-family:'Syne',sans-serif;font-size:15px;font-weight:800;
+  background:linear-gradient(135deg,#A48111,#D4AF37,#F5E27A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.ec-hod-label{font-size:9px;color:rgba(255,255,255,0.25);margin-bottom:6px;letter-spacing:1px}
+.ec-hod-name{font-size:12px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:12px}
+.ec-member{
+  display:flex;gap:7px;padding:7px 0;
+  border-bottom:1px solid rgba(164,129,17,0.05);
+}
+.ec-member:last-child{border:none}
+.ec-bullet{
+  width:4px;height:4px;border-radius:50%;
+  background:rgba(164,129,17,0.4);flex-shrink:0;margin-top:5px;
+}
+.ec-mname{font-size:12px;font-weight:600;color:#fff}
+.ec-mdetail{font-size:10px;color:rgba(255,255,255,0.3);margin-top:1px}
+.ec-mphone{font-size:11px;font-weight:700;color:#A48111;margin-top:2px}
+
+/* EVENTS */
+.events-section{background:var(--dark)}
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ev-card{
+  border-radius:22px;overflow:hidden;
+  aspect-ratio:4/3;position:relative;cursor:pointer;
+  transition:all 0.4s;
+  border:1px solid rgba(164,129,17,0.1);
+}
+.ev-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(164,129,17,0.3);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5);
+}
+.ev-img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s;
+}
+.ev-card:hover .ev-img{transform:scale(1.07)}
+.ev-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,
+    rgba(6,5,0,0.97) 0%,
+    rgba(6,5,0,0.5) 55%,
+    rgba(6,5,0,0.05) 100%);
+}
+.ev-glow{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(164,129,17,0.2),transparent 60%);
+  opacity:0;transition:opacity 0.4s;
+}
+.ev-card:hover .ev-glow{opacity:1}
+.ev-dept{
+  position:absolute;top:14px;right:14px;
+  background:rgba(6,5,0,0.65);backdrop-filter:blur(8px);
+  border:1px solid rgba(164,129,17,0.2);
+  color:rgba(164,129,17,0.7);
+  font-size:9px;font-weight:700;
+  padding:4px 10px;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;letter-spacing:1px;
+}
+.ev-content{
+  position:absolute;bottom:0;left:0;right:0;padding:22px;z-index:2;
+}
+.ev-tag{
+  display:inline-block;
+  font-size:8px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;padding:3px 10px;border-radius:999px;
+  margin-bottom:8px;
+  font-family:'JetBrains Mono',monospace;
+  background:rgba(164,129,17,0.1);
+  color:rgba(212,175,55,0.8);
+  border:1px solid rgba(164,129,17,0.22);
+}
+.ev-name{
+  font-family:'Syne',sans-serif;font-size:22px;
+  font-weight:900;color:#fff;letter-spacing:-0.5px;
+  margin-bottom:5px;
+}
+.ev-desc{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:16px;line-height:1.5}
+.ev-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:800;
+  padding:9px 20px;border-radius:999px;
+  text-decoration:none;letter-spacing:0.5px;
+  background:linear-gradient(135deg,#A48111,#D4AF37);
+  color:#000;transition:all 0.2s;
+}
+.ev-btn:hover{transform:scale(1.04);box-shadow:0 4px 20px rgba(164,129,17,0.4)}
+
+/* ABOUT */
+.about-section{background:linear-gradient(180deg,var(--dark2),var(--dark3))}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-img-card{
+  border-radius:22px;overflow:hidden;
+  border:1px solid rgba(164,129,17,0.12);
+  transition:all 0.3s;
+}
+.about-img-card:hover{border-color:rgba(164,129,17,0.3);transform:translateY(-4px)}
+.about-img-card img{width:100%;height:220px;object-fit:cover}
+.about-img-text{
+  padding:22px;
+  background:rgba(164,129,17,0.03);
+}
+.about-img-text h3{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:800;
+  background:linear-gradient(135deg,#A48111,#D4AF37,#F5E27A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:10px;letter-spacing:-0.5px;
+}
+.about-img-text p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.8}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.about-stat{
+  background:rgba(164,129,17,0.04);
+  border:1px solid rgba(164,129,17,0.12);
+  border-radius:14px;padding:18px;text-align:center;
+  transition:all 0.2s;
+}
+.about-stat:hover{border-color:rgba(164,129,17,0.28)}
+.about-stat-num{
+  font-family:'Syne',sans-serif;font-size:30px;font-weight:900;
+  background:linear-gradient(135deg,#A48111,#D4AF37);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.about-stat-label{font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;font-weight:600;letter-spacing:1px}
+.about-right-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  font-weight:700;letter-spacing:3px;
+  color:rgba(164,129,17,0.5);text-transform:uppercase;margin-bottom:12px;
+}
+.about-right-title{
+  font-family:'Syne',sans-serif;font-size:clamp(26px,3.5vw,44px);
+  font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:20px;
+}
+.about-right-title span{
+  background:linear-gradient(135deg,#A48111,#D4AF37,#F5E27A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.about-right p{
+  font-size:15px;color:rgba(255,255,255,0.48);
+  line-height:1.85;margin-bottom:16px;
+}
+.tech-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.tech-pill{
+  background:rgba(164,129,17,0.05);
+  border:1px solid rgba(164,129,17,0.16);
+  border-radius:999px;padding:6px 14px;
+  font-size:11px;font-weight:700;
+  color:rgba(164,129,17,0.55);
+  font-family:'JetBrains Mono',monospace;
+  transition:all 0.2s;cursor:default;
+}
+.tech-pill:hover{
+  background:rgba(164,129,17,0.1);
+  border-color:rgba(164,129,17,0.3);
+  color:#D4AF37;
+}
+
+/* FOOTER */
+footer{
+  position:relative;overflow:hidden;
+  padding:72px 64px 0;
+}
+footer::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 15% 60%,rgba(120,20,20,0.8) 0%,rgba(80,10,10,0.4) 30%,transparent 60%),
+    radial-gradient(ellipse at 85% 40%,rgba(60,40,40,0.6) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(30,5,15,0.9) 0%,rgba(10,2,8,1) 60%),
+    linear-gradient(135deg,#1C0808 0%,#0D0007 35%,#140D0D 65%,#1A1515 100%);
+}
+.footer-wm{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Syne',sans-serif;
+  font-size:clamp(48px,10vw,140px);
+  font-weight:900;
+  color:rgba(164,129,17,0.04);
+  letter-spacing:8px;pointer-events:none;
+  user-select:none;white-space:nowrap;z-index:0;
+}
+.footer-inner{position:relative;z-index:1}
+.footer-top{
+  text-align:center;margin-bottom:48px;
+}
+.footer-top h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(22px,3.5vw,40px);
+  font-weight:900;letter-spacing:-1px;
+  background:linear-gradient(135deg,#A48111,#D4AF37,#F5E27A,#D4AF37,#A48111);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 5s linear infinite;
+}
+.footer-divider{
+  display:flex;align-items:center;justify-content:center;gap:12px;margin-top:8px;
+}
+.footer-divider-line{height:1px;width:60px;background:linear-gradient(to right,transparent,rgba(164,129,17,0.3))}
+.footer-divider-dot{width:4px;height:4px;border-radius:50%;background:rgba(164,129,17,0.4)}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-bottom:56px}
+.footer-col-label{
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  color:rgba(164,129,17,0.3);text-transform:uppercase;
+  margin-bottom:18px;font-family:'JetBrains Mono',monospace;
+}
+.fp{margin-bottom:16px}
+.fp-name{font-size:15px;font-weight:700;color:#fff}
+.fp-name.gold{
+  background:linear-gradient(135deg,#A48111,#D4AF37,#F5E27A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.fp-detail{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px}
+.fp-phone{font-size:12px;font-weight:700;color:#A48111;margin-top:3px}
+.footer-bottom{
+  background:rgba(255,255,255,0.03);
+  border-top:1px solid rgba(164,129,17,0.1);
+  margin:0 -64px;padding:16px 64px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:8px;
+}
+.fb-text{font-size:12px;color:rgba(255,255,255,0.2)}
+.fb-link{
+  font-size:12px;color:rgba(164,129,17,0.45);
+  text-decoration:none;
+  border:1px solid rgba(164,129,17,0.15);
+  padding:5px 14px;border-radius:999px;
+  transition:all 0.2s;
+}
+.fb-link:hover{
+  background:linear-gradient(135deg,#A48111,#D4AF37);
+  color:#000;border-color:transparent;
+}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  section{padding:72px 32px}
+  nav{padding:16px 32px}
+  nav.scrolled{padding:12px 32px}
+  .ev-grid,.ec-grid,.dept-grid{grid-template-columns:repeat(2,1fr)}
+  .about-inner,.lead-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-bottom{margin:0 -32px;padding:14px 32px}
+  .hero-content{padding:0 32px 64px}
+  .hero-right-card{display:none}
+}
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  nav.scrolled{padding:10px 20px}
+  section{padding:56px 20px}
+  .ev-grid,.ec-grid{grid-template-columns:1fr}
+  .dept-grid{grid-template-columns:1fr 1fr}
+  .lead-grid,.about-inner{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  footer{padding:56px 20px 0}
+  .footer-bottom{margin:0 -20px;padding:14px 20px;flex-direction:column;text-align:center}
+  .hero-title .line1,.hero-title .line2{font-size:clamp(48px,12vw,80px)}
+  .hero-content{padding:0 20px 56px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV — ONLY LOGO + REGISTER -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">N</div>
+    <span class="nav-logo-text">NNRG TechFest</span>
+  </a>
+  <a href="#events" class="nav-register">Register Now →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="fc fc1">import tensorflow as tf</div>
+  <div class="fc fc2">model.fit(X_train, y_train)</div>
+  <div class="fc fc3">int main() { return 0; }</div>
+  <div class="fc fc4">const app = express();</div>
+  <div class="fc fc5">#include &lt;stdio.h&gt;</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <span class="hero-eyebrow-text">NNRG · AI & ML DEPT · TECH FEST 2027</span>
+    </div>
+    <div class="hero-title">
+      <div class="line1">NNRG</div>
+      <div class="line2">Tech Fest 2027</div>
+    </div>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-dot"></div>
+      <span class="hero-divider-text">EXCELLENCE</span>
+      <div class="hero-divider-dot"></div>
+      <div class="hero-divider-line" style="background:linear-gradient(to left,transparent,rgba(164,129,17,0.4))"></div>
+    </div>
+    <div class="hero-sub">Unleash your potential at NNRG Tech Fest. Where brilliant minds converge to shape the future through innovation, coding, and groundbreaking ideas.</div>
+    <div class="hero-dept">DEVELOPED BY THE DEPARTMENT OF AI & ML (CSM)</div>
+    <div class="hero-btns">
+      <a href="#events" class="hero-btn-main">Explore Events →</a>
+      <a href="#about" class="hero-btn-sec">About NNRG</a>
+    </div>
+  </div>
+  <div class="hero-right-card">
+    <div class="label">ORGANIZING BY</div>
+    <div class="value">AI & ML Department</div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    ${['Python','TensorFlow','React.js','C Language','Machine Learning','Node.js','Deep Learning','JavaScript','Android Dev','Data Science','TypeScript','Robotics','IoT','Cyber Security','Cloud Computing','Keras','OpenCV','Flutter','Django','FastAPI','Python','TensorFlow','React.js','C Language','Machine Learning','Node.js','Deep Learning','JavaScript','Android Dev','Data Science','TypeScript','Robotics','IoT','Cyber Security','Cloud Computing'].map((t,i)=>{
+      const colors=['#A48111','#D4AF37','#F5E27A'];
+      return `<span class="ticker-item"><span class="ticker-dot" style="background:${colors[i%3]}"></span>${t}</span>`;
+    }).join('')}
+  </div>
+</div>
+
+<!-- ORGANIZING COMMITTEE -->
+<section class="committee" id="committee">
+  <div class="sec-eyebrow">
+    <div class="sec-eyebrow-line"></div>
+    <span class="sec-eyebrow-text">Team</span>
+  </div>
+  <div class="sec-title">Organizing Committee.</div>
+  <div class="sec-muted">The team behind the fest.</div>
+
+  <div class="lead-grid">
+    <div class="lead-card lc-gold">
+      <div class="lead-card-title">Leadership</div>
+      <div class="lead-person"><div class="lead-bar-gold"></div><div><div class="lead-role">Chief Patron</div><div class="lead-name">Sri Nalla Narasimha Reddy</div><div class="lead-sub">Secretary</div></div></div>
+      <div class="lead-person"><div class="lead-bar-gold"></div><div><div class="lead-role">Co-Patron</div><div class="lead-name">Mr. Nalla Prashanth Reddy</div><div class="lead-sub">Vice Chairman</div></div></div>
+      <div class="lead-person"><div class="lead-bar-gold"></div><div><div class="lead-role">Patron</div><div class="lead-name">Dr. C. V. Krishna Reddy</div><div class="lead-sub">Director</div></div></div>
+      <div class="lead-person"><div class="lead-bar-gold"></div><div><div class="lead-role">Convener</div><div class="lead-name">Dr. G. Janardhana Raju</div><div class="lead-sub">Dean, School of Engineering</div></div></div>
+    </div>
+    <div class="lead-card lc-silver">
+      <div class="lead-card-title">Co-Conveners</div>
+      <div class="lead-person"><div class="lead-bar-silver"></div><div><div class="lead-role">Co-Convener · HOD CSE</div><div class="lead-name">Dr. K. Rameshwaraiah</div></div></div>
+      <div class="lead-person"><div class="lead-bar-silver"></div><div><div class="lead-role">Co-Convener · HOD ECE</div><div class="lead-name">Dr. B. Ravi</div></div></div>
+      <div class="lead-person"><div class="lead-bar-silver"></div><div><div class="lead-role">Co-Convener · TPO</div><div class="lead-name">Mr. K. Sreekanth</div></div></div>
+    </div>
+  </div>
+
+  <div class="dept-card">
+    <div class="dept-title">CSE — AI & ML Department</div>
+    <div class="dept-grid">
+      <div class="dept-person"><div class="dp-label">HOD</div><div class="dp-name">Dr. G. Sravan Kumar</div></div>
+      <div class="dept-person"><div class="dp-label">Asst. Professor</div><div class="dp-name">Mrs. M. Uma Devi</div></div>
+      <div class="dept-person"><div class="dp-label">IV AI&ML</div><div class="dp-name">Mr. M. Mahesh</div><div class="dp-phone">9347911917</div></div>
+      <div class="dept-person"><div class="dp-label">III AI&ML</div><div class="dp-name">Mr. B. Abhilash</div><div class="dp-phone">6305980317</div></div>
+      <div class="dept-person"><div class="dp-label">IV AI&ML</div><div class="dp-name">Ms. T. Sathwika</div><div class="dp-phone">8341621043</div></div>
+      <div class="dept-person"><div class="dp-label">III AI&ML</div><div class="dp-name">Mr. B. Ajay Reddy</div><div class="dp-phone">6301970732</div></div>
+      <div class="dept-person main"><div class="dp-label">Main Coordinator</div><div class="dp-name">Gattu Abhinay</div><div class="dp-detail">CSM-A · 247Z1A6660</div><div class="dp-phone">8309030400</div></div>
+      <div class="dept-person"><div class="dp-label">Coordinator</div><div class="dp-name">Nithish</div><div class="dp-detail">CSM-A · 247Z1A6659</div><div class="dp-phone">9390270079</div></div>
+      <div class="dept-person"><div class="dp-label">Coordinator</div><div class="dp-name">Abhiram</div><div class="dp-detail">CSM-A · 247Z1A6602</div><div class="dp-phone">9492952722</div></div>
+    </div>
+  </div>
+
+  <div class="ec-grid">
+    <div class="ec ec1">
+      <div class="ec-header"><div class="ec-dot"></div><div class="ec-name">CodeMania</div></div>
+      <div class="ec-hod-label">HOD — Dr. G. Sravan Kumar</div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Dr. V.V. Appaji</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">9949062386</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mr. M. Eswara Rao</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">8143848778</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Gattu Abhinay</div><div class="ec-mdetail">CSM-A · 247Z1A6660</div><div class="ec-mphone">8309030400</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Nithish</div><div class="ec-mdetail">CSM-A · 247Z1A6659</div><div class="ec-mphone">9390270079</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Abhiram</div><div class="ec-mdetail">CSM-A · 247Z1A6602</div><div class="ec-mphone">9492952722</div></div></div>
+    </div>
+    <div class="ec ec2">
+      <div class="ec-header"><div class="ec-dot"></div><div class="ec-name">Idea 2 App</div></div>
+      <div class="ec-hod-label">HOD — Dr. G. Sravan Kumar</div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mrs. M. Sonia</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">8985225720</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mrs. V. Rani Sailaja</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">9908691144</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Gattu Abhinay</div><div class="ec-mdetail">CSM-A · 247Z1A6660 · Creator</div><div class="ec-mphone">8309030400</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Deepak Sai</div><div class="ec-mdetail">CSM-A · 247Z1A6658</div></div></div>
+    </div>
+    <div class="ec ec3">
+      <div class="ec-header"><div class="ec-dot"></div><div class="ec-name">SpeakSphere</div></div>
+      <div class="ec-hod-label">HOD — Dr. G. Sravan Kumar</div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mrs. M. Uma Devi</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">8978787107</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mrs. S. Samyuktha</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">8121828351</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Gattu Abhinay</div><div class="ec-mdetail">CSM-A · 247Z1A6660</div><div class="ec-mphone">8309030400</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Nithish</div><div class="ec-mdetail">CSM-A · 247Z1A6659</div><div class="ec-mphone">9390270079</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Abhiram</div><div class="ec-mdetail">CSM-A · 247Z1A6602</div><div class="ec-mphone">9492952722</div></div></div>
+    </div>
+    <div class="ec ec4">
+      <div class="ec-header"><div class="ec-dot"></div><div class="ec-name">Tech Titans</div></div>
+      <div class="ec-hod-label">HOD — Dr. G. Sravan Kumar</div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mrs. P. Lavanya</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">9703562869</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mr. Sk. Feroz</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">7893682712</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Abhiram</div><div class="ec-mdetail">CSM-A · 247Z1A6602</div><div class="ec-mphone">9492952722</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Harin Sai</div><div class="ec-mdetail">CSM-A · 247Z1A6612</div></div></div>
+    </div>
+    <div class="ec ec5">
+      <div class="ec-header"><div class="ec-dot"></div><div class="ec-name">Paper Presentation</div></div>
+      <div class="ec-hod-label">HOD — Dr. G. Sravan Kumar</div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mr. K. Mahesh</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">8328455438</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mr. G. Prudhvi Raj</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">7981469912</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Surya</div><div class="ec-mdetail">CSM-A · 247Z1A6662</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Vamshi</div><div class="ec-mdetail">CSM-A · 247Z1A6661</div></div></div>
+    </div>
+    <div class="ec ec6">
+      <div class="ec-header"><div class="ec-dot"></div><div class="ec-name">Quick Puzzle</div></div>
+      <div class="ec-hod-label">HOD — Dr. G. Sravan Kumar</div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Mr. T. Mahesh</div><div class="ec-mdetail">Faculty Coordinator</div><div class="ec-mphone">9642888931</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Bukya Ganesh</div><div class="ec-mdetail">CSM-A · 247Z1A6626</div></div></div>
+      <div class="ec-member"><div class="ec-bullet"></div><div><div class="ec-mname">Konda Akhil</div><div class="ec-mdetail">CSM-A · 247Z1A6631</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events-section" id="events">
+  <div class="sec-eyebrow">
+    <div class="sec-eyebrow-line"></div>
+    <span class="sec-eyebrow-text">Participate</span>
+  </div>
+  <div class="sec-title">Tech Fest Events.</div>
+  <div class="sec-muted">Explore and participate.</div>
+  <div class="ev-grid">
+    <div class="ev-card">
+      <img src="thumb-speaksphere.jpg" alt="SpeakSphere" class="ev-img"/>
+      <div class="ev-overlay"></div><div class="ev-glow"></div>
+      <div class="ev-dept">CSE-AI&ML</div>
+      <div class="ev-content">
+        <div class="ev-tag">Speaking</div>
+        <div class="ev-name">SpeakSphere</div>
+        <div class="ev-desc">Public speaking & presentation competition</div>
+        <a href="https://speak-sphere-ai-ml.vercel.app/" target="_blank" class="ev-btn">Register Now →</a>
+      </div>
+    </div>
+    <div class="ev-card">
+      <img src="thumb-idea2app.png" alt="Idea2App" class="ev-img"/>
+      <div class="ev-overlay"></div><div class="ev-glow"></div>
+      <div class="ev-dept">CSE-AI&ML</div>
+      <div class="ev-content">
+        <div class="ev-tag">Innovation</div>
+        <div class="ev-name">Idea 2 App</div>
+        <div class="ev-desc">Transform ideas into functional applications</div>
+        <a href="https://idea2app-ai-ml.vercel.app/" target="_blank" class="ev-btn">Register Now →</a>
+      </div>
+    </div>
+    <div class="ev-card">
+      <img src="thumb-paperpresentation.png" alt="Paper Presentation" class="ev-img"/>
+      <div class="ev-overlay"></div><div class="ev-glow"></div>
+      <div class="ev-dept">CSE-AI&ML</div>
+      <div class="ev-content">
+        <div class="ev-tag">Research</div>
+        <div class="ev-name">Paper Presentation</div>
+        <div class="ev-desc">Present your AI & ML research ideas</div>
+        <a href="https://paperpresentation.vercel.app/" target="_blank" class="ev-btn">Register Now →</a>
+      </div>
+    </div>
+    <div class="ev-card">
+      <img src="thumb-techtitans.png" alt="Tech Titans" class="ev-img"/>
+      <div class="ev-overlay"></div><div class="ev-glow"></div>
+      <div class="ev-dept">CSE-AI&ML</div>
+      <div class="ev-content">
+        <div class="ev-tag">Quiz</div>
+        <div class="ev-name">Tech Titans</div>
+        <div class="ev-desc">Technical quiz competition</div>
+        <a href="https://tech-titans-ai-ml.vercel.app/" target="_blank" class="ev-btn">Register Now →</a>
+      </div>
+    </div>
+    <div class="ev-card">
+      <img src="thumb-codemania.png" alt="CodeMania" class="ev-img"/>
+      <div class="ev-overlay"></div><div class="ev-glow"></div>
+      <div class="ev-dept">CSE-AI&ML</div>
+      <div class="ev-content">
+        <div class="ev-tag">Coding</div>
+        <div class="ev-name">CodeMania</div>
+        <div class="ev-desc">C Language Technical Event</div>
+        <a href="https://code-mania-ai-ml.vercel.app/" target="_blank" class="ev-btn">Register Now →</a>
+      </div>
+    </div>
+    <div class="ev-card">
+      <img src="thumb-quickpuzzle.png" alt="Quick Puzzle" class="ev-img"/>
+      <div class="ev-overlay"></div><div class="ev-glow"></div>
+      <div class="ev-dept">CSE-AI&ML</div>
+      <div class="ev-content">
+        <div class="ev-tag">Puzzle</div>
+        <div class="ev-name">Quick Puzzle</div>
+        <div class="ev-desc">Solve puzzles against the clock</div>
+        <a href="https://quick-puzzle.vercel.app/" target="_blank" class="ev-btn">Register Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="about-img-card">
+        <img src="hero-bg.png" alt="NNRG Campus"/>
+        <div class="about-img-text">
+          <h3>Our Institution</h3>
+          <p>NNRG — Nalla Narasimha Reddy Group of Institutions is an autonomous institution founded by Sri Nalla Narasimha Reddy. Equipped with high-tech labs, cutting-edge infrastructure, and a culture of innovation.</p>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="about-stat"><div class="about-stat-num">2009</div><div class="about-stat-label">Established</div></div>
+        <div class="about-stat"><div class="about-stat-num" style="background:linear-gradient(135deg,#D4AF37,#F5E27A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">6+</div><div class="about-stat-label">Tech Events</div></div>
+        <div class="about-stat"><div class="about-stat-num" style="background:linear-gradient(135deg,#A48111,#F5E27A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Auto</div><div class="about-stat-label">Autonomous</div></div>
+        <div class="about-stat"><div class="about-stat-num" style="background:linear-gradient(135deg,#D4AF37,#A48111);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AI/ML</div><div class="about-stat-label">Department</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="about-right-eyebrow">About the Fest</div>
+      <div class="about-right-title">Where <span>Brilliant Minds</span> Build the Future</div>
+      <div class="about-right">
+        <p>NNRG Tech Fest 2027 is the annual flagship technical festival organized by the Department of CSE — Artificial Intelligence & Machine Learning. A celebration of technology, innovation, and creativity.</p>
+        <p>From C programming battles to public speaking showdowns, from app development sprints to research paper presentations — 6 events, 1 platform, infinite possibilities.</p>
+      </div>
+      <div class="tech-pills">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">TensorFlow</span>
+        <span class="tech-pill">React.js</span>
+        <span class="tech-pill">C Language</span>
+        <span class="tech-pill">ML / DL</span>
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">Android Dev</span>
+        <span class="tech-pill">Data Science</span>
+        <span class="tech-pill">IoT</span>
+        <span class="tech-pill">Cloud</span>
+        <span class="tech-pill">Cyber Security</span>
+        <span class="tech-pill">TypeScript</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wm">TECH FEST 2027</div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <h2>Need Help? We've Got You.</h2>
+      <div class="footer-divider">
+        <div class="footer-divider-line"></div>
+        <div class="footer-divider-dot"></div>
+        <div class="footer-divider-line" style="background:linear-gradient(to left,transparent,rgba(164,129,17,0.3))"></div>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-col-label">Faculty Coordinators</div>
+        <div class="fp"><div class="fp-name">Dr. G. Sravan Kumar</div><div class="fp-detail">HOD, CSE — AI & ML</div></div>
+        <div class="fp"><div class="fp-name">Mrs. M. Uma Devi</div><div class="fp-detail">Asst. Professor</div></div>
+      </div>
+      <div>
+        <div class="footer-col-label">Student Coordinators</div>
+        <div class="fp"><div class="fp-name gold">Gattu Abhinay</div><div class="fp-detail">CSM-A · 247Z1A6660</div><div class="fp-phone">8309030400</div></div>
+        <div class="fp"><div class="fp-name">Nithish</div><div class="fp-detail">CSM-A · 247Z1A6659</div><div class="fp-phone">9390270079</div></div>
+        <div class="fp"><div class="fp-name">Abhiram</div><div class="fp-detail">CSM-A · 247Z1A6602</div><div class="fp-phone">9492952722</div></div>
+      </div>
+      <div>
+        <div class="footer-col-label">Department</div>
+        <div class="fp"><div class="fp-name">CSE — AI & ML</div><div class="fp-detail" style="line-height:1.7;margin-top:6px">Nalla Narasimha Reddy Education Society's Group of Institutions · Hyderabad</div></div>
+        <div class="fp" style="margin-top:16px"><div class="fp-detail" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(164,129,17,0.2)">6 Events · Feb 26, 2027</div></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="fb-text">Developed by the Department of AI & ML (CSM)</span>
+      <span class="fb-text">© 2027 NNRG Fest. All rights reserved.</span>
+      <a href="https://wa.me/918309030400" target="_blank" class="fb-link">Designed by GATTU ABHINAY ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+</script>
+</body>
+</html>
